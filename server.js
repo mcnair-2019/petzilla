@@ -3,6 +3,9 @@ const app = express();
 const path = require('path');
 const exphbs  = require('express-handlebars'); 
 
+const dogs = require('./public/img/Dogs');  //Get Dog paths
+const cats = require('./public/img/Cats');  //Get Cats paths
+
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, '/public')));     // Sets Static Folder routes for Files in "/public", mainly for CSS and Images
@@ -31,7 +34,8 @@ app.get('/cats', (req, res) => {
     res.render('gallery', {
         title: 'Cats!',
         css: '<link rel="stylesheet" type="text/css" href="css/gallery.css" >',
-        script: '<script src="scripts/gallery./js"></script>'
+        script: '<script src="scripts/gallery.js"></script>',
+        imgs: cats
     });
 });
 
@@ -40,7 +44,8 @@ app.get('/dogs', (req, res) => {
     res.render('gallery', {
         title: 'Dogs!',
         css: '<link rel="stylesheet" type="text/css" href="css/gallery.css" >',
-        script: '<script src="scripts/gallery./js"></script>'
+        script: '<script src="scripts/gallery.js"></script>',
+        imgs: dogs
     });
 });
 
