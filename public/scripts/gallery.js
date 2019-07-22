@@ -1,7 +1,8 @@
-var photoTh = $('.picture'),
-    overlay = $('.overlay');
+$(document).ready(function() {
+  var photoTh = $('.picture'),
+      overlay = $('.overlay');
 
-photoTh.on('click', function() {    
+  photoTh.on('click', function() {    
     var dataPhoto = $(this).attr('src'),
         dataTitle = $(this).data('title');
   
@@ -12,6 +13,7 @@ photoTh.on('click', function() {
   }
 );
 
-overlay.on('click', function() {
-  $(this).hide();
+  overlay.on('click', function() {
+    $(this).hide();
+  });
 });

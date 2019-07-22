@@ -11,11 +11,17 @@
 <p>This is a Google web font</p>
 
 <div class="gallery">
-  <div class="picture-container">
-    <img class="picture" src="https://1.bp.blogspot.com/-o8qOuHWxZ_E/UAe8wMAtthI/AAAAAAAAHE0/gzbHDIBOt8g/s1600/Hdhut.blogspot.com+(27).jpg"   data-title="Oh! The mountains!" />
-  </div>
-  <div class="picture-container">
+    <!-- data-title="" is for image caption -->
+    {{#each imgs}}
+        <div class="picture-container">
+            <img class="picture" src="{{this.img}}"   data-title="test" >
+        </div>
+    {{/each}}
+
+{{!-- <img class="picture" src="https://1.bp.blogspot.com/-o8qOuHWxZ_E/UAe8wMAtthI/AAAAAAAAHE0/gzbHDIBOt8g/s1600/Hdhut.blogspot.com+(27).jpg"   data-title="Oh! The mountains!" /> --}}
+
+  {{!-- <div class="picture-container">
     <img class="picture" src="http://surfattitude.files.wordpress.com/2013/08/mavericksswanner2.jpg" data-title="Oh! The sea!" />
-  </div>
+  </div> --}}
 </div>
   
