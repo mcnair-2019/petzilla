@@ -11,8 +11,8 @@ app.use(express.static(path.join(__dirname, '/public')));     // Sets Static Fol
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 
-// Handlebars Middleware
-app.engine('handlebars', exphbs());
+// Handlebars Middleware, exphbs() is to modify config/options for hbs
+app.engine('handlebars', exphbs({ defaultLayout: 'main', layoutsDir: path.join(__dirname, '/views/layouts')}));
 app.set('view engine', 'handlebars');
 
 // Home page route
