@@ -46,7 +46,7 @@ app.get('/cats', (req, res) => {
         }
     };
     
-    request(options, (err, response, body) => {      // Send get request to cat API. Note: Use response instead of res, will override previous res variable. 
+    request(options, (err, response, body) => {      // Send HTTP get request to cat API. Note: Use response instead of res, will override previous res variable above. 
         if(err){ 
             throw new Error(err);
         }
