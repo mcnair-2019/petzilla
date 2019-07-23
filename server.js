@@ -23,6 +23,8 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
+// -----------------------  Routing Starts Here --------------------------------------
+
 // Home page route
 app.get('/', (req, res) => {    
     res.render('index', {       // Render "/views/index.handlebars" and use the layout "/views/layouts/index.handlebars"
