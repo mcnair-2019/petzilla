@@ -50,10 +50,7 @@ app.get('/cats', (req, res) => {
 
         catJSON = JSON.parse(body);     // Parse JSON formatted String into JSON
 
-        for(var i in catJSON) {     // Push url into array
-            var item = catJSON[i];  // Store single cat object in item
-            cats.push(item.url);    // Push cat object's url 
-        }
+        catJSON.map(cat => cats.push(cat.url));   // For every cat.url in dogJSON, push it into cat array
 
         // Must call res.render() inside request() due to callback based approach of request().
         // (cats array will not be filled by the time res.render() gets called)
@@ -86,10 +83,7 @@ app.get('/dogs', (req, res) => {
 
         dogJSON = JSON.parse(body);     // Parse JSON formatted String into JSON
 
-        for(var i in dogJSON) {     // Push url into array
-            var item = dogJSON[i];  // Store single dog object in item
-            dogs.push(item.url);    // Push cat object's url 
-        }
+        dogJSON.map(dog => dogs.push(dog.url));   // For every dog.url in dogJSON, push it into dogs array
 
         // Must call res.render() inside request() due to callback based approach of request().
         // (dogs array will not be filled by the time res.render() gets called)
