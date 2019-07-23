@@ -37,6 +37,10 @@
   font-family: Arial;
 }
 
+html {
+  background-color: #e76744;
+}
+
 h1, h2, p {
   margin: 20px auto;
   text-align: center;
