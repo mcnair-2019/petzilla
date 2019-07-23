@@ -5,9 +5,6 @@ const exphbs  = require('express-handlebars');
 const request = require('request');
 const dbconfig = require('./dbconfig.json');    // Load dbconfig file with API key
 
-const dogs = require('./public/img/Dogs');  //Get Dog paths
-const cats = require('./public/img/Cats');  //Get Cats paths
-
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, '/public')));     // Sets Static Folder routes for Files in "/public", mainly for CSS and Images
@@ -54,7 +51,7 @@ app.get('/cats', (req, res) => {
         catJSON = JSON.parse(body);     // Parse JSON formatted String into JSON
 
         for(var i in catJSON) {     // Push url into array
-            var item = catJSON[i];  // Store single cat objectin item
+            var item = catJSON[i];  // Store single cat object in item
             cats.push(item.url);    // Push cat object's url 
         }
 
@@ -71,11 +68,37 @@ app.get('/cats', (req, res) => {
 
 // Dog page route
 app.get('/dogs', (req, res) => {
-    res.render('gallery', {
-        title: 'Dogs!',
-        css: '<link rel="stylesheet" type="text/css" href="css/gallery.css" >',
-        script: '<script src="scripts/gallery.js"></script>',
-        imgs: dogs
+    var dogJSON;    // Dog API json data
+    var dogs = [];  // Dog URLs array
+
+    var options = {     // Options for dog API
+        method: 'GET',
+        url: 'https://api.thedogapi.com/v1/images/search?limit=5',  // limit=5 returns 5 images
+        headers: {
+            'x-api-key': dbconfig["api-key"]
+        }
+    };
+    
+    request(options, (err, response, body) => {      // Send HTTP get request to cat API. Note: Use response instead of res, will override previous res variable above. 
+        if(err){ 
+            throw new Error(err);
+        }
+
+        dogJSON = JSON.parse(body);     // Parse JSON formatted String into JSON
+
+        for(var i in dogJSON) {     // Push url into array
+            var item = dogJSON[i];  // Store single dog object in item
+            dogs.push(item.url);    // Push cat object's url 
+        }
+
+        // Must call res.render() inside request() due to callback based approach of request().
+        // (dogs array will not be filled by the time res.render() gets called)
+        res.render('gallery', {
+            title: 'Dogs!',
+            css: '<link rel="stylesheet" type="text/css" href="css/gallery.css" >',
+            script: '<script src="scripts/gallery.js"></script>',
+            imgs: dogs
+        });
     });
 });
 
