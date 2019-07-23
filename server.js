@@ -58,7 +58,7 @@ app.get('/cats', (req, res) => {
             cats.push(item.url);    // Push cat object's url 
         }
 
-        // Must call res.render() inside request() due to callback based approach.
+        // Must call res.render() inside request() due to callback based approach of request().
         // (cats array will not be filled by the time res.render() gets called)
         res.render('gallery', {     
             title: 'Cats!',         
